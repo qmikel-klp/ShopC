@@ -1,0 +1,24 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
+export default function Header() {
+  const items = useSelector(s => s.cart.items)
+  const count = Object.values(items).reduce((s, i) => s + i.qty, 0)
+
+  return (
+    <header className="site-header">
+      <div className="container">
+        <div className="brand">
+          <Link to="/">GreenHouse</Link>
+        </div>
+        <nav>
+          <Link to="/products">Products</Link>
+          <Link to="/cart" className="cart-link">
+            🛒 <span className="cart-count">{count}</span>
+          </Link>
+        </nav>
+      </div>
+    </header>
+  )
+}
